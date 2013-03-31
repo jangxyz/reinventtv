@@ -1,0 +1,90 @@
+<html>
+<head>
+
+<script type='text/javascript'>
+
+var imageFiles = [
+	'images/1박2일.png',
+	'images/스크린샷 2013-03-31 오후 7.01.10.png',
+	'images/스크린샷 2013-03-31 오후 7.01.40.png',
+	'images/스크린샷 2013-03-31 오후 7.02.00.png',
+	'images/스크린샷 2013-03-31 오후 7.02.36.png',
+	'images/스크린샷 2013-03-31 오후 7.03.07.png',
+	'images/스크린샷 2013-03-31 오후 7.04.00.png',
+	'images/스크린샷 2013-03-31 오후 7.04.23.png',
+	'images/스크린샷 2013-03-31 오후 7.05.05.png',
+	'images/스크린샷 2013-03-31 오후 7.05.23.png',
+	'images/스크린샷 2013-03-31 오후 7.07.02.png',
+	'images/스크린샷 2013-03-31 오후 7.07.17.png',
+	'images/스크린샷 2013-03-31 오후 7.09.21.png',
+	'images/스크린샷 2013-03-31 오후 7.09.34.png',
+	'images/스크린샷 2013-03-31 오후 7.10.20.png',
+	'images/스크린샷 2013-03-31 오후 7.10.32.png',
+	'images/스크린샷 2013-03-31 오후 7.11.06.png',
+	'images/스크린샷 2013-03-31 오후 7.12.12.png',
+	'images/스크린샷 2013-03-31 오후 7.12.16.png',
+	'images/스크린샷 2013-03-31 오후 7.13.09.png',
+	'images/스크린샷 2013-03-31 오후 7.13.42.png',
+	'images/스크린샷 2013-03-31 오후 7.13.44.png',
+	'images/스크린샷 2013-03-31 오후 7.15.18.png',
+	'images/스크린샷 2013-03-31 오후 7.16.22.png',
+	'images/스크린샷 2013-03-31 오후 7.16.28.png',
+	'images/스크린샷 2013-03-31 오후 7.18.23.png',
+	'images/스크린샷 2013-03-31 오후 7.18.37.png',
+	'images/스크린샷 2013-03-31 오후 7.20.04.png',
+	'images/스크린샷 2013-03-31 오후 7.20.11.png',
+	'images/스크린샷 2013-03-31 오후 7.21.21.png',
+	'images/스크린샷 2013-03-31 오후 7.22.04.png',
+	'images/스크린샷 2013-03-31 오후 7.22.41.png',
+	'images/스크린샷 2013-03-31 오후 7.23.35.png',
+	'images/스크린샷 2013-03-31 오후 7.23.39.png',
+	'images/스크린샷 2013-03-31 오후 7.25.03.png',
+	'images/스크린샷 2013-03-31 오후 7.26.22.png',
+	'images/스크린샷 2013-03-31 오후 7.27.58.png',
+];
+
+function load() {
+
+	var size = 6;
+	var params = location.search.substring(1).split('&');
+	for (var i=0; i<params.length; i++) {
+		if (params[i].split('=')[0] === 'size') {
+			size = parseInt(params[i].split('=')[1]);
+			break;
+		}
+	}
+
+	var canvas = document.getElementById('canvas');
+	var screenX = window.screen.availWidth;
+	var screenY = window.screen.availHeight;
+
+
+	var imgX = screenX / size;
+	var imgY = imgX * 9 /16;
+	if (screenX * 9 / 16 < screenY) {
+		imgY = screenY / size;
+		imgX = imgY * 16 / 9;
+	}
+	imgX = parseInt(imgX);
+	imgY = parseInt(imgY);
+
+	var iterMax = size*size;
+	for(var i=0; i<iterMax; i++) {
+		var img = new Image();
+		img.setAttribute('src', imageFiles[i % imageFiles.length]);
+		img.setAttribute('class', 'tv-program');
+		img.setAttribute('style', 'width: ' + imgX + 'px; height: ' + imgY + 'px;');
+		canvas.appendChild(img);
+	}
+}
+
+</script>
+</head>
+
+<body style='margin: 0; padding: 0;' onload='load()'>
+	<div id='canvas' style='background-color: black;'>
+	</div>
+</body>
+</html>
+
+
