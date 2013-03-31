@@ -57,12 +57,17 @@ function load() {
 
 	var canvas = document.getElementById('canvas');
 	var screenX = window.screen.availWidth;
-	var screenY = window.screen.availHeight;
+	//var screenY = window.screen.availHeight;
 
+	var screenY = 
+		document.body.clientHeight || window.innerHeight || 
+		window.screen.availHeight || 
+		document.documentElement.clientHeight || document.body.clientHeight || window.screen.height;
 
 	var imgX = screenX / size;
 	var imgY = imgX * 9 /16;
-	if (screenX * 9 / 16 < screenY) {
+	// X is too wide
+	if (screenX * 9 > screenY * 16) {
 		imgY = screenY / size;
 		imgX = imgY * 16 / 9;
 	}
@@ -76,6 +81,10 @@ function load() {
 		img.setAttribute('class', 'tv-program');
 		img.setAttribute('style', 'width: ' + imgX + 'px; height: ' + imgY + 'px;');
 		canvas.appendChild(img);
+
+		if ((i+1)%size === 0) {
+			canvas.innerHTML += '<br>';
+		}
 	}
 }
 
